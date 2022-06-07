@@ -1,7 +1,7 @@
 
-from turtle import width
-from matplotlib.ft2font import HORIZONTAL
-from matplotlib.style import use
+# from turtle import width
+# from matplotlib.ft2font import HORIZONTAL
+# from matplotlib.style import use
 import streamlit as st
 import pickle
 import numpy as np
@@ -11,12 +11,12 @@ from datetime import date
 from datetime import datetime
 import difflib
 from streamlit_option_menu import option_menu
-from PIL import Image
-import collections
+# from PIL import Image
+# import collections
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-import altair as alt
+# import altair as alt
 import re
 
 st.set_page_config(page_title='Hi',page_icon='clapper')
