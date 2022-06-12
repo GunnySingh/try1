@@ -150,27 +150,27 @@ if sel=='Home':
     st.subheader('Recommendations For You :')
 
 
-#     titles , posters,title_key =  recommend(name)
+    titles , posters,title_key =  recommend(name)
 
 
-#     c=0
-#     for i in range(0,12,2):
-#         for col in st.columns(2):
-#             col.image(posters[c],width=250,caption=titles[c])
+    c=0
+    for i in range(0,12,2):
+        for col in st.columns(2):
+            col.image(posters[c],width=250,caption=titles[c])
             
-#             # col.markdown('**{}**'.format(titles[c]))
+            # col.markdown('**{}**'.format(titles[c]))
             
-#             if col.button('Find Similar Movies',key=c):
-#                 t,p,k = recommend(title_key[c])
-#                 with st.expander('Recoms :',expanded=True):
-#                         w=0
-#                         for k in st.columns(5):
-#                             k.image(p[w],caption=t[w],width=80)
-#                             w+=1
+            if col.button('Find Similar Movies',key=c):
+                t,p,k = recommend(title_key[c])
+                with st.expander('Recoms :',expanded=True):
+                        w=0
+                        for k in st.columns(5):
+                            k.image(p[w],caption=t[w],width=80)
+                            w+=1
 
-#                         # st.image(p[x],width=100,caption=t[x])
+                        # st.image(p[x],width=100,caption=t[x])
                         
-#             c+=1
+            c+=1
 
 if sel=='Year':
     st.markdown("""
@@ -203,93 +203,93 @@ if sel=='Year':
             st.dataframe(eda[['year','revenue','title']])
 
     
-# if sel =='Multi-Select Movies':
+if sel =='Multi-Select Movies':
 
-#     st.markdown("""
-#     <h3 style='color:darkslategray;font-size:250%;text-align:center;'>
-#     MULTI-MOVIE RECOMMENDATION
-#     </h3>""",unsafe_allow_html=True)
+    st.markdown("""
+    <h3 style='color:darkslategray;font-size:250%;text-align:center;'>
+    MULTI-MOVIE RECOMMENDATION
+    </h3>""",unsafe_allow_html=True)
 
-#     st.caption('You can get more accurate recommendations by selecting more than one movie.')
-#     st.write(' ')
-#     col1,col2 = st.columns([1,4])
-#     no_movies = col1.selectbox(label='No. of movies',options=range(2,9),index=2)
-#     multi_movies = col2.multiselect(label='Select your favoutive movies below :',options=final.key)
+    st.caption('You can get more accurate recommendations by selecting more than one movie.')
+    st.write(' ')
+    col1,col2 = st.columns([1,4])
+    no_movies = col1.selectbox(label='No. of movies',options=range(2,9),index=2)
+    multi_movies = col2.multiselect(label='Select your favoutive movies below :',options=final.key)
     
-#     multi_movies_idx=[]
-#     for i in multi_movies:
-#         multi_movies_idx.append(final[final.key==i].index[0])
+    multi_movies_idx=[]
+    for i in multi_movies:
+        multi_movies_idx.append(final[final.key==i].index[0])
     
-#     multi_movies_titles = final.iloc[multi_movies_idx]['title'].values
-#     multi_movies_ratings = final.iloc[multi_movies_idx]['rating'].values
-#     multi_movies_votes = final.iloc[multi_movies_idx]['num_votes'].values
-#     if len(multi_movies)==no_movies:
+    multi_movies_titles = final.iloc[multi_movies_idx]['title'].values
+    multi_movies_ratings = final.iloc[multi_movies_idx]['rating'].values
+    multi_movies_votes = final.iloc[multi_movies_idx]['num_votes'].values
+    if len(multi_movies)==no_movies:
 
-#         if no_movies<=4:
-#             for i,col in enumerate(st.columns(no_movies)):
-#                 col.image('https://image.tmdb.org/t/p/w500'+final[final.key==multi_movies[i]]['poster'].values[0],width=150,caption = multi_movies_titles[i]+' '+'\n'+str(multi_movies_ratings[i])+'('+str(multi_movies_votes[i])+' Votes)')
+        if no_movies<=4:
+            for i,col in enumerate(st.columns(no_movies)):
+                col.image('https://image.tmdb.org/t/p/w500'+final[final.key==multi_movies[i]]['poster'].values[0],width=150,caption = multi_movies_titles[i]+' '+'\n'+str(multi_movies_ratings[i])+'('+str(multi_movies_votes[i])+' Votes)')
 
-#         if no_movies>4:
-#             for i,col in enumerate(st.columns(4)):
-#                 col.image('https://image.tmdb.org/t/p/w500'+final[final.key==multi_movies[i]]['poster'].values[0],width=150,caption=multi_movies_titles[i]+' '+'\n'+str(multi_movies_ratings[i])+'('+str(multi_movies_votes[i])+' Votes)')
+        if no_movies>4:
+            for i,col in enumerate(st.columns(4)):
+                col.image('https://image.tmdb.org/t/p/w500'+final[final.key==multi_movies[i]]['poster'].values[0],width=150,caption=multi_movies_titles[i]+' '+'\n'+str(multi_movies_ratings[i])+'('+str(multi_movies_votes[i])+' Votes)')
                 
                 
-#             for i,col in enumerate(st.columns(4)):
-#                 try:
-#                     col.image('https://image.tmdb.org/t/p/w500'+final[final.key==multi_movies[4:][i]]['poster'].values[0],width=150,caption=multi_movies_titles[4:][i]+' '+'\n'+str(multi_movies_ratings[4:][i])+'('+str(multi_movies_votes[4:][i])+' Votes)')
+            for i,col in enumerate(st.columns(4)):
+                try:
+                    col.image('https://image.tmdb.org/t/p/w500'+final[final.key==multi_movies[4:][i]]['poster'].values[0],width=150,caption=multi_movies_titles[4:][i]+' '+'\n'+str(multi_movies_ratings[4:][i])+'('+str(multi_movies_votes[4:][i])+' Votes)')
                     
-#                 except:
-#                     st.write('')
+                except:
+                    st.write('')
     
-#     # with st.expander(label='Get Reommendations:'):
-#     radio_sel = st.radio(label=' ',options=('Show Recommendations',"Don't Show Recommendations"),horizontal=True,index=1)
-#     if radio_sel=='Show Recommendations':
-#         s=np.zeros((11321,))
-#         for i in multi_movies_idx:
-#             s+=sim_mat[i]
+    # with st.expander(label='Get Reommendations:'):
+    radio_sel = st.radio(label=' ',options=('Show Recommendations',"Don't Show Recommendations"),horizontal=True,index=1)
+    if radio_sel=='Show Recommendations':
+        s=np.zeros((11321,))
+        for i in multi_movies_idx:
+            s+=sim_mat[i]
         
-#         multi_results = sorted(list(enumerate(s)),key=lambda x :x[1])
-#         multi_results_idx = []
-#         for j in multi_results:
-#             multi_results_idx.append(j[0])
+        multi_results = sorted(list(enumerate(s)),key=lambda x :x[1])
+        multi_results_idx = []
+        for j in multi_results:
+            multi_results_idx.append(j[0])
 
-#         for i in multi_movies_idx:
-#             multi_results_idx.remove(i)
-#         multi_results_idx=multi_results_idx[:12]
-#         multi_results_posters = final.iloc[multi_results_idx]['poster'].values
-#         multi_results_title = final.iloc[multi_results_idx]['title'].values
-#         multi_results_rating = final.iloc[multi_results_idx]['rating'].values
-#         multi_results_votes = final.iloc[multi_results_idx]['num_votes'].values
-#         multi_results_budget = final.iloc[multi_results_idx]['budget'].values
-#         multi_results_year = final.iloc[multi_results_idx]['year'].values
-#         multi_results_runtime = final.iloc[multi_results_idx]['runtime'].values
-#         multi_results_genre = final.iloc[multi_results_idx]['genre'].values
-#         multi_results_overview = final.iloc[multi_results_idx]['overview'].values
-#         multi_results_director = final.iloc[multi_results_idx]['director'].values
-#         multi_results_cast = final.iloc[multi_results_idx]['cast'].values
-#         multi_results_revenue = final.iloc[multi_results_idx]['revenue'].values
+        for i in multi_movies_idx:
+            multi_results_idx.remove(i)
+        multi_results_idx=multi_results_idx[:12]
+        multi_results_posters = final.iloc[multi_results_idx]['poster'].values
+        multi_results_title = final.iloc[multi_results_idx]['title'].values
+        multi_results_rating = final.iloc[multi_results_idx]['rating'].values
+        multi_results_votes = final.iloc[multi_results_idx]['num_votes'].values
+        multi_results_budget = final.iloc[multi_results_idx]['budget'].values
+        multi_results_year = final.iloc[multi_results_idx]['year'].values
+        multi_results_runtime = final.iloc[multi_results_idx]['runtime'].values
+        multi_results_genre = final.iloc[multi_results_idx]['genre'].values
+        multi_results_overview = final.iloc[multi_results_idx]['overview'].values
+        multi_results_director = final.iloc[multi_results_idx]['director'].values
+        multi_results_cast = final.iloc[multi_results_idx]['cast'].values
+        multi_results_revenue = final.iloc[multi_results_idx]['revenue'].values
         
         
-#         q=0
-#         for i in range(0,12,3):
-#             for col in st.columns(3):
-#                 col.image('https://image.tmdb.org/t/p/w500'+multi_results_posters[q],caption=multi_results_title[q])
+        q=0
+        for i in range(0,12,3):
+            for col in st.columns(3):
+                col.image('https://image.tmdb.org/t/p/w500'+multi_results_posters[q],caption=multi_results_title[q])
 
-#                 if col.button(label='Get Movie Info',key=q+100):
+                if col.button(label='Get Movie Info',key=q+100):
                     
-#                     col.markdown(' *Year:* {}'.format(multi_results_year[q]),unsafe_allow_html=True)
+                    col.markdown(' *Year:* {}'.format(multi_results_year[q]),unsafe_allow_html=True)
                     
-#                     col.markdown('_Runtime:_ {}'.format(multi_results_runtime[q]),unsafe_allow_html=True)
-#                     col.markdown('_Rating:_ {}({} Votes)'.format(multi_results_rating[q],multi_results_votes[q]),unsafe_allow_html=True)
-#                     col.markdown('_Genre:_ {}'.format(multi_results_genre[q]),unsafe_allow_html=True)
+                    col.markdown('_Runtime:_ {}'.format(multi_results_runtime[q]),unsafe_allow_html=True)
+                    col.markdown('_Rating:_ {}({} Votes)'.format(multi_results_rating[q],multi_results_votes[q]),unsafe_allow_html=True)
+                    col.markdown('_Genre:_ {}'.format(multi_results_genre[q]),unsafe_allow_html=True)
                     
-#                     col.markdown('_Director:_ {}'.format(multi_results_director[q]),unsafe_allow_html=True)
-#                     col.markdown('_Cast:_ {}'.format(multi_results_cast[q]),unsafe_allow_html=True)
-#                     col.markdown('_Budget:_ {}'.format(multi_results_budget[q]),unsafe_allow_html=True)
-#                     col.markdown('_Revenue:_ {}'.format(multi_results_revenue[q]),unsafe_allow_html=True)                    
-#                     st.text_area(label='Summary:',value= multi_results_overview[q])
+                    col.markdown('_Director:_ {}'.format(multi_results_director[q]),unsafe_allow_html=True)
+                    col.markdown('_Cast:_ {}'.format(multi_results_cast[q]),unsafe_allow_html=True)
+                    col.markdown('_Budget:_ {}'.format(multi_results_budget[q]),unsafe_allow_html=True)
+                    col.markdown('_Revenue:_ {}'.format(multi_results_revenue[q]),unsafe_allow_html=True)                    
+                    st.text_area(label='Summary:',value= multi_results_overview[q])
 
-#                 q+=1
+                q+=1
 
 if sel =='Actors':
     st.markdown("""
