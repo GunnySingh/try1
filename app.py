@@ -35,7 +35,7 @@ with st.sidebar:
         default_index=0)
 
 
-# sim_mat = pickle.load(open('sim_mat.pkl','rb'))
+sim_mat = pickle.load(open('sim_mat.pkl','rb'))
 final = pickle.load(open('df_final.pkl','rb'))
 actor = pickle.load(open('df_actor.pkl','rb'))
 
